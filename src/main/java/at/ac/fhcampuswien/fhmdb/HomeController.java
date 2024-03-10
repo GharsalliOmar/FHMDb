@@ -20,7 +20,8 @@ import java.util.stream.Collectors;
 public class HomeController implements Initializable {
     @FXML
     public JFXButton searchBtn;
-
+    @FXML
+    public JFXButton Reset;
     @FXML
     public TextField searchField;
 
@@ -50,6 +51,7 @@ public class HomeController implements Initializable {
                 "WESTERN");
 
         searchBtn.setOnAction(actionEvent -> applyFilters());
+        Reset.setOnAction(actionEvent -> Reset());
 
         // Sort button example:
         sortBtn.setOnAction(actionEvent -> {
@@ -73,21 +75,32 @@ public class HomeController implements Initializable {
                 .filter(movie -> isTitleOrDescriptionContainsQuery(movie, query))
                 .filter(movie -> isGenreMatches(movie, selectedGenre))
                 .collect(Collectors.toList());
-        observableMovies.clear();  // Leere die ObservableList vor dem Hinzufügen der gefilterten Filme
-        observableMovies.addAll(filteredMovies);
-        observableMovies.setAll(filteredMovies);
-        movieListView.refresh();
+        Reset();
+        movieListView.setItems(FXCollections.observableArrayList(filteredMovies));
+        movieListView.setCellFactory(movieListView -> new MovieCell());
+        System.out.println("Query: " + query);
+        System.out.println("Selected Genre: " + selectedGenre);
     }
-
 
     private boolean isTitleOrDescriptionContainsQuery(Movie movie, String query) {
         return movie.getTitle().toLowerCase().contains(query) ||
                 (movie.getDescription() != null && movie.getDescription().toLowerCase().contains(query));
     }
 
+    private void Reset() {
+        genreComboBox.setValue(null);
+        movieListView.setItems(FXCollections.observableArrayList(allMovies));
+        movieListView.setCellFactory(movieListView -> new MovieCell());
+
+
+    }
+
+
+
     private boolean isGenreMatches(Movie movie, String selectedGenre) {
         if (selectedGenre == null || selectedGenre.isEmpty()) {
             return true; // Wenn kein Genre ausgewählt wurde, wird der Filter übersprungen
+
         }
 
         try {
@@ -98,5 +111,4 @@ public class HomeController implements Initializable {
             return false;
         }
     }
-
 }
