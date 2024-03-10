@@ -51,6 +51,14 @@ public class Movie {
                 List.of(Genre.COMEDY, Genre.ROMANCE));
         movies.add(movie2);
 
+        Movie movie3 = new Movie("Movie 3", "Description for Movie 3",
+                List.of(Genre.HISTORY, Genre.BIOGRAPHY));
+        movies.add(movie3);
+
+        Movie movie4 = new Movie("Movie 4", "Description for Movie 4",
+                List.of(Genre.WAR, Genre.BIOGRAPHY));
+        movies.add(movie4);
+
 
         return movies;
 

@@ -12,6 +12,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
 
 import java.net.URL;
+import java.util.Comparator;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
@@ -53,7 +54,7 @@ public class HomeController implements Initializable {
         // Sort button example:
         sortBtn.setOnAction(actionEvent -> {
             if (sortBtn.getText().equals("Sort (asc)")) {
-                FXCollections.sort(observableMovies, (movie1, movie2) -> movie1.getTitle().compareTo(movie2.getTitle()));
+                FXCollections.sort(observableMovies, Comparator.comparing(Movie::getTitle));
                 // TODO sort observableMovies ascending
                 sortBtn.setText("Sort (desc)");
             } else {
