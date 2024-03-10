@@ -33,7 +33,8 @@ public class MovieCell extends ListCell<Movie> {
             // Entferne das letzte Komma und Leerzeichen
             genresText = genresText.isEmpty() ? "" : genresText.substring(0, genresText.length() - 2);
             genres.setText("Genres: " + genresText);
-
+            double maxWidth = 400; // Setze die maximale Breite nach Bedarf
+            detail.setMaxWidth(maxWidth);
             detail.setText(
                     movie.getDescription() != null
                             ? movie.getDescription()
