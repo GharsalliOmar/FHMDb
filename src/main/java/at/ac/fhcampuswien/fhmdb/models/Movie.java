@@ -9,7 +9,9 @@ public class Movie {
     List<Genre> genres;
 
     public Movie(String title, String description, List<Genre> action) {
-
+        this.title = title;
+        this.description = description;
+        this.genres = genres;
     }
 
     enum Genre {
@@ -19,23 +21,9 @@ public class Movie {
     }
     // TODO add more properties here
 
-    public Movie(String title, String description) {
-        this.title = title;
-        this.description = description;
-        this.genres = genres;
-    }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
 
-    public void setGenres(List<Genre> genres) {
-        this.genres = genres;
-    }
 
     public String getTitle() {
         return title;
@@ -66,6 +54,10 @@ public class Movie {
         // Füge weitere Dummy-Movies nach Bedarf hinzu
 
         return movies;
+
     }
+
 }
+
+
 
