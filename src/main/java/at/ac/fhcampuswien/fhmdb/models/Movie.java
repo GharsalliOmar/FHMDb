@@ -6,18 +6,18 @@ import java.util.List;
 public class Movie {
     private String title;
     private String description;
-    List<Genre> genres;
+    private List<Genre> genres = new ArrayList<>();
 
-    public Movie(String title, String description, List<Genre> action) {
+    public Movie(String title, String description, List<Genre> genres) {
         this.title = title;
         this.description = description;
         this.genres = genres;
     }
 
-    enum Genre {
+    public enum Genre {
         ACTION, ADVENTURE, ANIMATION, BIOGRAPHY, COMEDY, CRIME, DRAMA,
         DOCUMENTARY, FAMILY, FANTASY, HISTORY, HORROR, MUSICAL, MYSTERY,
-        ROMANCE, SCIENCE_FICTION, SPORT, THRILLER, WAR, WESTERN
+        ROMANCE, SCIENCE_FICTION, SPORT, THRILLER, WAR, WESTERN,
     }
     // TODO add more properties here
 

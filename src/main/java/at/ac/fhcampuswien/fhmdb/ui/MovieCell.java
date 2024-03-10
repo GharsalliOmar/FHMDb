@@ -12,7 +12,8 @@ import javafx.scene.paint.Color;
 public class MovieCell extends ListCell<Movie> {
     private final Label title = new Label();
     private final Label detail = new Label();
-    private final VBox layout = new VBox(title, detail);
+    private final Label genres = new Label();
+    private final VBox layout = new VBox(title, detail, genres);
 
     @Override
     protected void updateItem(Movie movie, boolean empty) {
@@ -23,12 +24,21 @@ public class MovieCell extends ListCell<Movie> {
         } else {
             this.getStyleClass().add("movie-cell");
             title.setText(movie.getTitle());
+
+            // Anzeige der Genres
+            String genresText = "";
+            for (Movie.Genre genre : movie.getGenres()) {
+                genresText += genre + ", ";
+            }
+            // Entferne das letzte Komma und Leerzeichen
+            genresText = genresText.isEmpty() ? "" : genresText.substring(0, genresText.length() - 2);
+            genres.setText("Genres: " + genresText);
+
             detail.setText(
                     movie.getDescription() != null
                             ? movie.getDescription()
                             : "No description available"
             );
-
 
             // color scheme
             title.getStyleClass().add("text-yellow");
@@ -44,6 +54,4 @@ public class MovieCell extends ListCell<Movie> {
             layout.alignmentProperty().set(javafx.geometry.Pos.CENTER_LEFT);
             setGraphic(layout);
         }
-    }
-}
-
+    }}
