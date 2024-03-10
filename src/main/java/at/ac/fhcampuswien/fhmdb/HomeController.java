@@ -73,7 +73,8 @@ public class HomeController implements Initializable {
                 .filter(movie -> isTitleOrDescriptionContainsQuery(movie, query))
                 .filter(movie -> isGenreMatches(movie, selectedGenre))
                 .collect(Collectors.toList());
-
+        observableMovies.clear();  // Leere die ObservableList vor dem Hinzufügen der gefilterten Filme
+        observableMovies.addAll(filteredMovies);
         observableMovies.setAll(filteredMovies);
         movieListView.refresh();
     }

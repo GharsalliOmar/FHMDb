@@ -27,14 +27,15 @@ public class MovieCell extends ListCell<Movie> {
 
             // Anzeige der Genres
             String genresText = "";
-            for (Movie.Genre genre : movie.getGenres()) {
-                genresText += genre + ", ";
+            if (movie.getGenres() != null && !movie.getGenres().isEmpty()) {
+                for (Movie.Genre genre : movie.getGenres()) {
+                    genresText += genre + ", ";
+                }
+                // Entferne das letzte Komma und Leerzeichen
+                genresText = genresText.substring(0, genresText.length() - 2);
             }
-            // Entferne das letzte Komma und Leerzeichen
-            genresText = genresText.isEmpty() ? "" : genresText.substring(0, genresText.length() - 2);
             genres.setText("Genres: " + genresText);
-            double maxWidth = 400; // Setze die maximale Breite nach Bedarf
-            detail.setMaxWidth(maxWidth);
+
             detail.setText(
                     movie.getDescription() != null
                             ? movie.getDescription()
