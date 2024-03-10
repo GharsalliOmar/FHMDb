@@ -53,9 +53,11 @@ public class HomeController implements Initializable {
         // Sort button example:
         sortBtn.setOnAction(actionEvent -> {
             if (sortBtn.getText().equals("Sort (asc)")) {
+                FXCollections.sort(observableMovies, (movie1, movie2) -> movie1.getTitle().compareTo(movie2.getTitle()));
                 // TODO sort observableMovies ascending
                 sortBtn.setText("Sort (desc)");
             } else {
+                FXCollections.sort(observableMovies, (movie1, movie2) -> movie2.getTitle().compareTo(movie1.getTitle()));
                 // TODO sort observableMovies descending
                 sortBtn.setText("Sort (asc)");
             }

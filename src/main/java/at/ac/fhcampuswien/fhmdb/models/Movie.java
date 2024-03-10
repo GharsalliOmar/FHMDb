@@ -51,7 +51,6 @@ public class Movie {
                 List.of(Genre.COMEDY, Genre.ROMANCE));
         movies.add(movie2);
 
-        // Füge weitere Dummy-Movies nach Bedarf hinzu
 
         return movies;
 
